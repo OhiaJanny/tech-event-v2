@@ -77,7 +77,7 @@ const Login = () => {
                     </div>
                     <div className={styles.row}>
                         <p>Password</p>
-                        <Input value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <Input value={password} type="password" onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                     <div className={[styles.row, styles.remember].join(' ')}>
                         <div className={styles.flex}>

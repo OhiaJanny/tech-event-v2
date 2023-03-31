@@ -1,1 +1,1 @@
-export const endpoint = 'https://women-intech.onrender.com'
+export const endpoint = 'http://localhost:5000'

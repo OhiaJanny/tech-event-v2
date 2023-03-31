@@ -32,12 +32,12 @@ const Signup = () => {
             position: toast.POSITION.TOP_RIGHT
           });
         }
-        if(password.length < 6){
-          return toast.error("Password length: > 5", {
+        if(password !== confirmPassword){
+          return toast.error("Password must be the same", {
             position: toast.POSITION.TOP_RIGHT
           });
         }
-    
+        
         setLoading(true)
         const xhr = new XMLHttpRequest()
         xhr.open('post', `${endpoint}/signup`)
@@ -54,7 +54,7 @@ const Signup = () => {
             toast.success(data.success, {
               position: toast.POSITION.TOP_RIGHT
             });
-            navigate('/login')
+            navigate('/verify')
           }
         }
         xhr.onerror = function () {
@@ -69,7 +69,7 @@ const Signup = () => {
             position: toast.POSITION.TOP_RIGHT
           });
         }
-    
+        localStorage.setItem('email-verification', email)
         xhr.send(JSON.stringify({fullname: name, email, password}))
     
       }
@@ -97,11 +97,11 @@ const Signup = () => {
                     </div>
                     <div className={styles.row}>
                         <p>Create Password</p>
-                        <Input value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <Input value={password} type="password" onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                     <div className={styles.row}>
                         <p>Confirm Password</p>
-                        <Input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+                        <Input value={confirmPassword} type="password" onChange={(e) => setConfirmPassword(e.target.value)}/>
                     </div>
                     <div className={styles.row}>
                         {
